@@ -147,3 +147,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 # chronic_project
 # chronic_project
+
+# Environment Variables
+
+The following environment variables are used in the application:
+
+- `PORT`: The port number to run the server on. Default is `5015`.
+- `MONGO_URI`: The MongoDB connection string. Default is `mongodb+srv://username:pass@cluster0.vcy4ut3.mongodb.net/chronic?retryWrites=true&w=majority&appName=Cluster0`.
+- `JWT_SECRET`: The secret key for generating JWT tokens. Default is `chronic_disease_management`.
+- `JWT_EXPIRES`: The time duration in seconds for which the JWT token is valid. Default is `7d`.
+- `JWT_REFRESH_EXPIRES`: The time duration in seconds for which the JWT refresh token is valid. Default is `30d`.
+
