@@ -1,0 +1,30 @@
+{
+  "type": "module",
+  "name": "chronic-disease-management-backend",
+  "version": "1.0.0",
+  "description": "Chronic Disease Management Portal Backend",
+  "main": "src/app.js",
+ "scripts": {
+  "start": "TZ='UTC' node src/app.js",
+  "dev": "TZ='UTC' nodemon src/app.js"
+}
+,
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "helmet": "^5.1.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.13.8",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "author": "Ajay Kumar",
+  "license": "MIT"
+}
+

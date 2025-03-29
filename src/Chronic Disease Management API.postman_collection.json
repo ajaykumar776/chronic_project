@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "7a587472-f401-4396-8182-68d0d7751fb4",
+		"name": "Chronic Disease Management API",
+		"description": "API collection for Chronic Disease Management Portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17939827",
+		"_collection_link": "https://galactic-flare-458838.postman.co/workspace/Floatr_~8d6aa2f0-b115-4be1-acf2-63939f44bca2/collection/17939827-7a587472-f401-4396-8182-68d0d7751fb4?action=share&source=collection_link&creator=17939827"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"new 1\",\n    \"email\": \"new1@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}api/auth/register",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"token\", jsonData.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"provider1@example.com\",\n    \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}api/auth/login",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Get Health Metrics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}api/patients/metrics",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"patients",
+								"metrics"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-03-30",
+									"disabled": true
+								},
+								{
+									"key": "patientId",
+									"value": "67e842cb4c47b97c34e50330",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Metrics",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bloodPressure\": \"110/80\",\n    \"bloodSugar\": 85,\n    \"weight\": 60\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}api/patients/metrics",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"patients",
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/patients/metrics/:id",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"patients",
+								"metrics",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67e8552a037cf7cd5aa04032"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Provider",
+			"item": [
+				{
+					"name": "Get All Patients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}api/providers/patients",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"providers",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}api/providers/patients/:id",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"providers",
+								"patients",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67e856e3d711d749794cacc8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
